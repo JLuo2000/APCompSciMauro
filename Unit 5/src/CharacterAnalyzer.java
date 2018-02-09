@@ -13,7 +13,7 @@ public class CharacterAnalyzer
 
 	public CharacterAnalyzer()
 	{
-		
+		theChar = ' ';
 
 	}
 
