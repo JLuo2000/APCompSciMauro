@@ -12,26 +12,33 @@ public class LoopStats
 
 	public LoopStats()
 	{
-
+		start = 0;
+		stop = 0;
 
 	}
 
-	public LoopStats(int beg, int end)
+	public void LoopStats(int beg, int end)
 	{
-
+		setNums(beg,end);
+		System.out.println(toString());
 
 	}
 
 	public void setNums(int beg, int end)
 	{
-
+		start = beg;
+		stop = end;
 
 	}
 
 	public int getEvenCount()
 	{
 		int evenCount=0;
-
+		for (int i = start; i<=stop; i++) {
+			if (i % 2 == 0) {
+				evenCount = evenCount +1;
+			}
+		}
 
 
 
@@ -41,7 +48,9 @@ public class LoopStats
 	public int getOddCount()
 	{
 		int oddCount=0;
-
+		int range = stop - start;
+		
+		oddCount = range - getEvenCount();
 
 
 
@@ -61,6 +70,8 @@ public class LoopStats
 	
 	public String toString()
 	{
-		return start + " " + stop;
+		return start + " to " + stop + "\n" + "Total: " + getTotal() + "\n" + "Even count: " + getEvenCount() + "\n" + "Odd Count: " + getOddCount() + "\n";
+		
+		
 	}
 }
