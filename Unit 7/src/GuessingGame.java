@@ -13,23 +13,14 @@ public class GuessingGame
 
 	public GuessingGame(int stop)
 	{
-		upperBound = stop;
+
 
 	}
 
 	public void playGame()
 	{
 		Scanner keyboard = new Scanner(System.in);
-		double answer = Math.random()%(upperBound+1);
-		int tries = 1;
-		int input = keyboard.nextInt();
-		
-		while (answer != input) {
-			input = keyboard.nextInt();
-			
-			
-		}
-		
+
 
 
 
