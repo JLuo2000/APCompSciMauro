@@ -10,6 +10,6 @@ public class Lab11j
 {
    public static void main(String args[])
    {
-
+	   Triples py = new Triples(110);
 	}
 }
