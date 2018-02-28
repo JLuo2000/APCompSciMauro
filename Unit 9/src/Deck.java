@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +21,7 @@ public class Deck {
 	 */
 	private int size;
 
-
+	Random rand = new Random();
 	/**
 	 * Creates a new <code>Deck</code> instance.<BR>
 	 * It pairs each element of ranks with each element of suits,
@@ -31,6 +32,12 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		for(int i = 0; i < suits.length; i++) {
+			for (int j = 0; j < ranks.length; j++) {
+				cards.add(new Card(ranks[j], suits[i], values [j]));
+			}
+		}
+		shuffle();
 	}
 
 
@@ -40,7 +47,7 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		return cards.size() == 0;
+		return size == 0;
 	}
 
 	/**
@@ -49,6 +56,7 @@ public class Deck {
 	 */
 	public int size() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size;
 	}
 
 	/**
@@ -56,7 +64,12 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		size = cards.size();
+		for (int k = 51; k>=1; k--) {
+			int r = rand.nextInt(k+1);
+			cards.add(k+1, cards.remove(r));
+			cards.add(r, cards.remove(k));
+		}
 	}
 
 	/**
@@ -65,7 +78,8 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		size = size-1;
+		return cards.get(size);
 	}
 
 	/**
