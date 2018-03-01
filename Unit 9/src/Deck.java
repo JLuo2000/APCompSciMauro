@@ -12,7 +12,7 @@ public class Deck {
 	/**
 	 * cards contains all the cards in the deck.
 	 */
-	private List<Card> cards;
+	private List<Card> cards = new ArrayList<Card>();
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -34,7 +34,9 @@ public class Deck {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
 		for(int i = 0; i < suits.length; i++) {
 			for (int j = 0; j < ranks.length; j++) {
-				cards.add(new Card(ranks[j], suits[i], values [j]));
+				Card c = new Card(ranks[j], suits[i], values[j]);
+				cards.add(c);
+				
 			}
 		}
 		shuffle();
@@ -65,10 +67,12 @@ public class Deck {
 	 */
 	public void shuffle() {
 		size = cards.size();
-		for (int k = 51; k>=1; k--) {
+		Card[] temp = new Card[cards.size()];
+		for (int k = cards.size() - 1; k>=1; k--) {
 			int r = rand.nextInt(k+1);
-			cards.add(k+1, cards.remove(r));
+			temp[r] = cards.get(r);
 			cards.add(r, cards.remove(k));
+			cards.add(k,temp[r]);
 		}
 	}
 
@@ -78,8 +82,9 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		size = size-1;
-		return cards.get(size);
+		while (size>0) {size = size-1;
+		return cards.get(size);}
+		return cards.get(0);
 	}
 
 	/**
