@@ -23,12 +23,14 @@ public class Lab17b
 
 			
 			
-			//call the printWord method
+			WordPrinter words = new WordPrinter();
+			words.printWord(word, times);
 
 
 
 			System.out.print("\nDo you want to enter more sample input? ");
 			choice=keyboard.next();			
 		}while(choice.equals("Y")||choice.equals("y"));		
+		keyboard.close();
 	}
 }
