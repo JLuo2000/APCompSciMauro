@@ -25,15 +25,25 @@ public class Grades
 	
 	public void setGrades(String gradeList)
 	{
+		Scanner scan = new Scanner(gradeList);
+		grades = new double[scan.nextInt()];
+		scan.next();
+		for(int i = 0; i<grades.length; i++) {
 
-
+			if (scan.hasNextDouble()) grades[i] = scan.nextDouble();
+			else if (scan.hasNextInt()) grades[i] = scan.nextInt();
+		}
+		
+		
+		scan.close();
+		
 
 
 	}
 	
 	public void setGrade(int spot, double grade)
 	{
-
+		grades[spot] = grade;
 
 
 	}
@@ -41,7 +51,9 @@ public class Grades
 	public double getSum()
 	{
 		double sum=0.0;
-
+		for (double i : grades) {
+			sum+=i;
+		}
 
 
 
@@ -51,8 +63,9 @@ public class Grades
 	public double getLowGrade()
 	{
 		double low = Double.MAX_VALUE;
-
-
+		for (double i : grades) {
+			if ( i < low) low = i;
+		}
 
 
 
@@ -63,7 +76,9 @@ public class Grades
 	{
 		double high = Double.MIN_VALUE;
 
-
+		for (double i : grades) {
+			if ( i > high) high = i;
+		}
 
 
 
@@ -78,7 +93,9 @@ public class Grades
 	public String toString()
 	{
 		String output="";
-
+		for(double d : grades) {
+			output = output+ d + " ";
+		}
 
 
 

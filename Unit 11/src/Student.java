@@ -22,20 +22,20 @@ public class Student
 	
 	public Student(String name, String gradeList)
 	{
-
-
-
+		setName(name);
+		setGrades(gradeList);
+		
 	}
 	
 	public void setName(String name)
 	{
-
+		myName = name;
 
 	}	
 	
 	public void setGrades(String gradeList)
 	{
-
+		myGrades = new Grades(gradeList);
 	
 	}
 	
