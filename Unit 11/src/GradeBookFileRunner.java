@@ -16,8 +16,16 @@ public class GradeBookFileRunner
    {
 		out.println("Welcome to the Class Stats program!");
 		
-		Scanner file = new Scanner(new File("gradebook.dat"));
-
+		Scanner file = new Scanner(new File("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 11\\src\\gradebook.dat"));
+		
+		Class c = new Class(file.nextLine(), file.nextInt()	);
+		System.out.println(c);
+		int i = 0;
+		
+		while(file.hasNextLine()) {
+			c.addStudent(i, new Student(file.nextLine(), file.nextLine()));
+			i++;
+		}
 
 
 

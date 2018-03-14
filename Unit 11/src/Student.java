@@ -47,41 +47,43 @@ public class Student
 
 	public String getName()
 	{
-		return "";
+		return myName;
 	}
 	
 	public int getNumGrades()
 	{
-		return 0;
+		return myGrades.getNumGrades();
 	}
 
 	public double getSum()
 	{
-		return 0.0;
+		return myGrades.getSum();
 	}
 	
 	public double getAverage()
 	{
-		return 0.0;
+		return getSum()/getNumGrades();
 	}
 
 	public double getAverageMinusLow()
 	{
-		return 0.0;
+		return (getSum()-getLowGrade())/getNumGrades();
 	}
 	
 	public double getHighGrade()
 	{
-		return 0.0;		
+		return myGrades.getHighGrade();		
 	}
 	
 	public double getLowGrade()
 	{
-		return 0.0;	
+		return myGrades.getLowGrade();	
 	}
 	
 	public String toString()
 	{
-		return "";
+		String output = "";
+		output = myName + " = "+ myGrades;
+		return output;
 	}	
 }
