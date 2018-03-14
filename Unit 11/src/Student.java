@@ -62,12 +62,12 @@ public class Student
 	
 	public double getAverage()
 	{
-		return getSum()/getNumGrades();
+		return  Math.floor(getSum()/getNumGrades() * 100) / 100;
 	}
 
 	public double getAverageMinusLow()
 	{
-		return (getSum()-getLowGrade())/getNumGrades();
+		return Math.floor((getSum()-getLowGrade())/getNumGrades() * 100) / 100;
 	}
 	
 	public double getHighGrade()

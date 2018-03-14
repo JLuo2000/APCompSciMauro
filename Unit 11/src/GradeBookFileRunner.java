@@ -17,20 +17,22 @@ public class GradeBookFileRunner{
 		out.println("Welcome to the Class Stats program!");
 		
 		Scanner file = new Scanner(new File("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 11\\src\\gradebook.dat"));
-		file.nextLine();
-		String siz = file.nextLine();
-		Class c = new Class(siz, file.nextInt()	);
+		Class c = new Class(file.nextLine(), Integer.parseInt(file.nextLine()));
+		int length = 0;
 		System.out.println(c);
-		int i = 0;
-		
-		int size = Integer.parseInt(siz);
 		while(file.hasNextLine()) {
-			c.addStudent(i, new Student(file.nextLine(), file.nextLine()));
-			i++;
+			String name = file.nextLine();
+			String grades = file.nextLine();
+			c.addStudent(length, new Student(name, grades));
+			out.println(c.getStudentName(length) + " = " + grades + "	" + c.getStudentAverage(name));
+			length++;
 		}
-		for(int ind = 0; i<size; i++) {
-			System.out.println(c.getStudentName(ind) + " = " + c);
-		}
+		out.println();
+		out.println("Failure List = " + c.getFailureList(70));	
+		out.println("Highest Average = " + c.getStudentWithHighestAverage());
+		out.println("Lowest Average = " + c.getStudentWithLowestAverage());
+								
+		out.println(String.format("Class Average = %.2f",c.getClassAverage()));
 
 
 
@@ -39,9 +41,7 @@ public class GradeBookFileRunner{
 
 
 
-
-
-
+file.close();
 
 	}		
 }
