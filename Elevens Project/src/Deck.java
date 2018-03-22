@@ -140,12 +140,10 @@ public class Deck {
 
 		for (int k = cards.size() - 1; k>=1; k--) {
 
-			int r = rand.nextInt(k+1);
-
+			int r = rand.nextInt(k);
 			temp[r] = cards.get(r);
-
 			cards.add(r, cards.remove(k));
-
+			cards.remove(r+1);
 			cards.add(k,temp[r]);
 
 		}
@@ -166,11 +164,13 @@ public class Deck {
 
 	public Card deal() {
 
-		while (size>0) {size = size-1;
+		while (size>0) {
+			size = size-1;
 
-		return cards.get(size);}
+			return cards.get(size);
+		}
 
-		return cards.get(0);
+		return null;
 
 	}
 
@@ -190,29 +190,17 @@ public class Deck {
 
 		String rtn = "size = " + size + "\nUndealt cards: \n";
 
-
-
 		for (int k = size - 1; k >= 0; k--) {
-
 			rtn = rtn + cards.get(k);
-
 			if (k != 0) {
-
 				rtn = rtn + ", ";
-
 			}
 
 			if ((size - k) % 2 == 0) {
-
 				// Insert carriage returns so entire deck is visible on console.
-
 				rtn = rtn + "\n";
-
 			}
-
 		}
-
-
 
 		rtn = rtn + "\nDealt cards: \n";
 
@@ -221,22 +209,14 @@ public class Deck {
 			rtn = rtn + cards.get(k);
 
 			if (k != size) {
-
 				rtn = rtn + ", ";
-
 			}
 
 			if ((k - cards.size()) % 2 == 0) {
-
 				// Insert carriage returns so entire deck is visible on console.
-
 				rtn = rtn + "\n";
-
 			}
-
 		}
-
-
 
 		rtn = rtn + "\n";
 

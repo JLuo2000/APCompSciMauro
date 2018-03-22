@@ -13,5 +13,19 @@ public class DeckTester {
 		int[] points = {11,12,13,1};
 		Deck cards = new Deck(ranks, suits, points);
 		System.out.println(cards.deal());
+		System.out.println();
+		System.out.println(cards.deal());
+		System.out.println();
+		System.out.println(cards.deal());
+		System.out.println();
+		System.out.println(cards.deal());
+		System.out.println();
+		System.out.println(cards.deal());
+		System.out.println();
+		System.out.println(cards.deal());
+		System.out.println();
+		System.out.println(cards.deal());
+		System.out.println();
+		//System.out.println(cards);
 	}
 }
