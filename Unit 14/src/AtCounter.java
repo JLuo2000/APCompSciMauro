@@ -41,8 +41,8 @@ public class AtCounter
 			if (c!=0) {
 				countAts(r,c-1);
 			}
-			if (r<temp.length) countAts(r+1, c);
-			if (c<temp.length) countAts(r,c+1);
+			if (r<temp.length-1) countAts(r+1, c);
+			if (c<temp.length-1) countAts(r,c+1);
 			return atCount;
 		}
 		
