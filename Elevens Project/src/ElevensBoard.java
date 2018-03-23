@@ -40,6 +40,7 @@ public class ElevensBoard extends Board {
 	 */
 	 public ElevensBoard() {
 	 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+	 	System.out.println("Jim Luo, Period 1, 3-23-18, Computer # CA-SU-F101-24");
 	 }
 
 	/**
@@ -54,10 +55,10 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		if (selectedCards.size() ==2) {
-			return containsPairSum11(selectedCards);
+			return containsDoubleJQK(selectedCards);
 		}
 		else if (selectedCards.size() == 3) {
-			return containsJQK(selectedCards);
+			return containsTripSum11(selectedCards);
 		}
 		
 		return false;
@@ -73,8 +74,8 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		if (super.deckSize() == 43 && (containsPairSum11(cardIndexes()) || containsJQK(cardIndexes()))) return true;
-		return containsPairSum11(cardIndexes()) || containsJQK(cardIndexes());
+		if (super.deckSize() == 43 && (containsTripSum11(cardIndexes()) || containsDoubleJQK(cardIndexes()))) return true;
+		return containsTripSum11(cardIndexes()) || containsDoubleJQK(cardIndexes());
 	}
 
 	/**
@@ -85,8 +86,8 @@ public class ElevensBoard extends Board {
 	 * @return true if the board entries in selectedCards
 	 *              contain an 11-pair; false otherwise.
 	 */
-	private boolean containsPairSum11(List<Integer> selectedCards) {
-		System.out.println(selectedCards);
+	/*private boolean containsPairSum11(List<Integer> selectedCards) {
+		//System.out.println(selectedCards);
 		boolean possible = false;
 		for(int i : selectedCards) {
 			for (int j: selectedCards) {
@@ -97,8 +98,46 @@ public class ElevensBoard extends Board {
 			}
 		}
 		return possible;
+	}*/
+	private boolean containsTripSum11(List<Integer> selectedCards){
+		boolean possible = false;
+		for (int i : selectedCards){
+			for (int j : selectedCards){
+				for(int k : selectedCards){
+					if (super.cardAt(i).pointValue() + super.cardAt(j).pointValue() + super.cardAt(k).pointValue() == 11){
+						possible = true;
+					}
+				}
+			}
+		}
+		return possible;
+		
 	}
-
+	
+	private boolean containsDoubleJQK(List<Integer> selectedCards){
+		boolean possible = false;
+		for(int i : selectedCards) {
+			if(super.cardAt(i).rank() == "jack"
+				|| super.cardAt(i).rank() == "queen"
+				|| super.cardAt(i).rank() == "king"){
+				for (int j: selectedCards) {
+					if (super.cardAt(i).rank() == super.cardAt(j).rank()) {
+						possible = true;
+					}
+					
+				}
+			}
+				
+			
+		}
+		return possible;
+		/*if (super.cardAt(selectedCards.get(0)).rank() == "jack"
+			|| super.cardAt(selectedCards.get(0)).rank() == "queen"
+			|| super.cardAt(selectedCards.get(0)).rank() == "king"){
+				return super.cardAt(selectedCards.get(0)).rank() == super.cardAt(selectedCards.get(1)).rank();
+		}
+		return false;*/
+	}
 	/**
 	 * Check for a JQK in the selected cards.
 	 * @param selectedCards selects a subset of this board.  It is list
@@ -107,11 +146,11 @@ public class ElevensBoard extends Board {
 	 * @return true if the board entries in selectedCards
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
-	private boolean containsJQK(List<Integer> selectedCards) {
+	/*private boolean containsJQK(List<Integer> selectedCards) {
 		ArrayList<String> cards = new ArrayList<String>();
 		for(int i = 0; i<selectedCards.size(); i++) {
 			cards.add(super.cardAt(selectedCards.get(i)).rank());
 		}
 		return cards.contains("jack") && cards.contains("queen") && cards.contains("king");
-	}
+	}*/
 }
