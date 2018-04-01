@@ -14,7 +14,7 @@ class InsertionSort
 
 	public InsertionSort()
 	{
-
+		list = new ArrayList<String>();
 
 
 	}
@@ -23,7 +23,7 @@ class InsertionSort
 	public void add( String  word)
 	{
 		int loc = 0;
-
+		
 
 
 

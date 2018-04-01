@@ -16,58 +16,17 @@ public class NumberSort
 
 	private static int getNumDigits(int number)
 	{
-		int count = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-		return count;
+		return Integer.toString(number).length();
 	}
 	
 	public static int[] getSortedDigitArray(int number)
 	{
-		int[] sorted = null;
+		int[] sorted = new int[getNumDigits(number)];
+		for(int i = 0; i< sorted.length; i++) {
+			sorted[i] = (int) Integer.toString(number).charAt(i)-48;
+		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		return sorted;
 	}
 }

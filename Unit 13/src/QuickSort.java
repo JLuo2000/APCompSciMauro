@@ -50,16 +50,8 @@ public class QuickSort
  
 		if (high > i)
 			quickSort(list, i, high);
-		for (Comparable e : list) {
-			System.out.println(e);
-		}
-
-
-
 
 	}
-
-
 	private static int partition(Comparable[] list, int low, int high)
 	{
 		if(list.length > 0) {
