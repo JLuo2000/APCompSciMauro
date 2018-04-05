@@ -14,36 +14,86 @@ public class Paddle extends Block
 
    public Paddle()
    {
-		super(10,10);
-      speed =5;
+	   super(10,10);
+	   speed =5;
+	   setColor(Color.black);
    }
 
 
-   //add the other Paddle constructors
-
-
-
-
-
-
+   public Paddle(int x, int y)
+   {
+	   super(x,y);
+	   speed =5;
+	   setColor(Color.black);
+   }
+   
+   public Paddle(int x, int y, int sp)
+   {
+	   super(x,y);
+	   speed =sp;
+	   setColor(Color.black);
+   }
+   
+   public Paddle(int x, int y, int wid, int hei, int sp)
+   {
+	   super(x,y, wid, hei);
+	   speed =sp;
+	   setColor(Color.black);
+   }
+   
+   public Paddle(int x, int y, int wid, int hei, Color col, int sp)
+   {
+	   super(x,y, wid, hei, col);
+	   speed =sp;
+   }
 
 
 
 
    public void moveUpAndDraw(Graphics window)
    {
-
+	   if (getY() >=5) {
+		   window.setColor(Color.white);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+		   setY(getY() - getSpeed());
+		   window.setColor(Color.BLACK);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+	   }
+	   else {
+		   window.setColor(Color.white);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+		   setY(0);
+		   window.setColor(Color.BLACK);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+	   }
 
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-
+		   window.setColor(Color.white);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+		   if (getY()>=500) {
+			   setY(500);
+		   }
+		   else {
+			   setY(getY() + getSpeed());
+		   }
+		   window.setColor(Color.BLACK);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
 
    }
 
-   //add get methods
+   public int getSpeed() {
+	   return speed;
+   }
    
    
-   //add a toString() method
+   public String toString() {
+	   String output = "";
+	   
+	   output += getX() + " " + getY() + " " + getHeight() + " " + getWidth() + " " + getColor() + " " + getSpeed();
+	   
+	   return output;
+   }
 }

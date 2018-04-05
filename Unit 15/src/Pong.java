@@ -23,7 +23,6 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private boolean[] keys;
 	private BufferedImage back;
 
-
 	public Pong()
 	{
 		//set up all variables related to the game
@@ -70,6 +69,9 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
+			if (ball.getX()<10) {
+				
+			}
 		}
 
 		
