@@ -18,8 +18,7 @@ public class TheGame extends JFrame
 		setSize(WIDTH,HEIGHT);
 		
 		Pong game = new Pong();
-		
-		((Component)game).setFocusable(true);			
+		((Component)game).setFocusable(true);
 		getContentPane().add(game);
 						
 		setVisible(true);

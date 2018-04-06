@@ -91,13 +91,39 @@ public class Ball extends Block implements Collidable
 
 @Override
 public boolean didCollideLeft(Object obj) {
-	// TODO Auto-generated method stub
+	Paddle lPad = (Paddle) obj;
+	if((getX() <=  lPad.getX() + lPad.getWidth() + Math.abs(getXSpeed()) && getX()>=lPad.getX())
+	&&(getY() >= lPad.getY()
+		&& getY() <= lPad.getY() + lPad.getHeight() 
+		|| (getY() + getHeight() >= lPad.getY() 
+		&& getY() + getHeight()  < lPad.getY()+ lPad.getHeight())))
+		{
+			if(getX() <= lPad.getX() + lPad.getWidth() - Math.abs(getXSpeed())) {
+				setYSpeed(-getYSpeed());
+			}
+		else setXSpeed(-getXSpeed());
+		return true;
+		}
+
 	return false;
 }
 
 @Override
 public boolean didCollideRight(Object obj) {
-	// TODO Auto-generated method stub
+	Paddle rPad = (Paddle) obj;
+	if((getX() <=  rPad.getX() + rPad.getWidth() + Math.abs(getXSpeed()) && getX() >=rPad.getX())
+	&&(getY() >= rPad.getY()
+		&& getY() <= rPad.getY() + rPad.getHeight() 
+		|| (getY() + getHeight() >= rPad.getY() 
+		&& getY() + getHeight()  < rPad.getY()+ rPad.getHeight())))
+		{
+			if(getX() <= rPad.getX() + rPad.getWidth() - Math.abs(getXSpeed())) {
+				setYSpeed(-getYSpeed());
+			}
+		else setXSpeed(-getXSpeed());
+		return true;
+		}
+
 	return false;
 }
 
