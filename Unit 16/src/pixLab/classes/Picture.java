@@ -216,6 +216,9 @@ public class Picture extends SimplePicture
 		  }
 	  }
   }
+  public void mirrorArms() {
+	  int splitpoint = 100;
+  }
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
