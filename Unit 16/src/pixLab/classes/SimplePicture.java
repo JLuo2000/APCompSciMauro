@@ -1,3 +1,5 @@
+package pixLab.classes;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -458,11 +460,14 @@ public class SimplePicture implements DigitalPicture
      title = fileName;
    
    File file = new File(this.fileName);
+   
+   
 
    if (!file.canRead()) 
    {
      // try adding the media path 
      file = new File(FileChooser.getMediaPath(this.fileName));
+     System.out.println(file.getPath());
      if (!file.canRead())
      {
        throw new IOException(this.fileName +

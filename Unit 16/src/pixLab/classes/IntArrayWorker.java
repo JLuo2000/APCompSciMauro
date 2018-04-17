@@ -1,3 +1,5 @@
+package pixLab.classes;
+
 public class IntArrayWorker
 {
   /** two dimensional matrix */
@@ -28,6 +30,33 @@ public class IntArrayWorker
     return total;
   }
   
+  public int getCount(int find) {
+	  int count = 0;
+	  for(int[] row : matrix) {
+		  for(int x : row) {
+			  if (x == find) count++;
+		  }
+	  }
+	  return count;
+  }
+  
+  public int getLargest() {
+	  int largest = Integer.MIN_VALUE;
+	  for(int[] row : matrix) {
+		  for(int x : row) {
+			  if (x > largest) largest = x;
+		  }
+	  }
+	  return largest;
+  }
+  
+  public int getColTotal(int c) {
+	  int total = 0;
+	  for(int[] row : matrix) {
+		  total += row[c];
+	  }
+	  return total;
+  }
   /**
    * Method to return the total using a nested for-each loop
    * @return the total of the values in the array

@@ -1,3 +1,4 @@
+package pixLab.classes;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -800,7 +801,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
    */
   public static void main( String args[])
   {
-    Picture pix = new Picture("beach.jpg");
+    Picture pix = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\beach.jpg");
     pix.explore();
   }
   
