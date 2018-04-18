@@ -18,6 +18,20 @@ public class PictureTester
     beach.zeroBlue();
     beach.explore();
   }
+  public static void testKeepOnlyGreen()
+  {
+    Picture beach = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.keepOnlyGreen();
+    beach.explore();
+  }
+  public static void testKeepOnlyReed()
+  {
+    Picture beach = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\beach.jpg");
+    beach.explore();
+    beach.keepOnlyRed();
+    beach.explore();
+  }
   public static void testKeepOnlyBlue()
   {
     Picture beach = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\beach.jpg");
@@ -52,7 +66,7 @@ public class PictureTester
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture("640x480.jpg");
+    Picture canvas = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\640x480.jpg");
     canvas.createCollage();
     canvas.explore();
   }
@@ -60,7 +74,7 @@ public class PictureTester
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
-    Picture swan = new Picture("swan.jpg");
+    Picture swan = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\swan.jpg");
     swan.edgeDetection(10);
     swan.explore();
   }
@@ -95,6 +109,24 @@ public class PictureTester
 	    flower.mirrorHorizontalBotToTop();
 	    flower.explore();
   }
+  public static void testMirrorArms() {
+	  Picture snowman = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\snowman.jpg");
+	  snowman.explore();
+	  snowman.mirrorArms();
+	  snowman.explore();
+  }
+  public static void testMirrorGull() {
+	  Picture snowman = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\seagull.jpg");
+	  snowman.explore();
+	  snowman.mirrorGull();
+	  snowman.explore();
+  }
+  public static void testMyCollage()
+  {
+    Picture canvas = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\640x480.jpg");
+    canvas.myCollage();
+    canvas.explore();
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -105,20 +137,21 @@ public class PictureTester
     //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
-    //testKeepOnlyGreen();
+    testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
 	//testMirrorVerticalRL();
-	//testMirrorHorizontal();
+	testMirrorHorizontal();
 	//testMirrorHorizontalBotToTop();
     //testMirrorTemple();
     //testMirrorArms();
-    //testMirrorGull();
+    testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
+	//testMyCollage();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
