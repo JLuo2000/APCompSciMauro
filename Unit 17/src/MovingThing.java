@@ -14,8 +14,9 @@ public abstract class MovingThing implements Locatable
 
 	public MovingThing()
 	{
-		xPos = 0;
-		yPos = 0;
+		setX(0);
+		setY(0);
+		setSpeed(0);
 	}
 
 	public MovingThing(int x, int y)
@@ -58,16 +59,18 @@ public abstract class MovingThing implements Locatable
 
 	public void move(String direction)
 	{
-		if(direction.equals("LEFT"))
+		if(direction.equals("LEFT") && getX()>=getSpeed()-100)
 	      setX(getX()-getSpeed());
-
-      	if(direction.equals("RIGHT")) {
-      		setX(getX() + getSpeed());
-      	}
+		if(direction.equals("RIGHT") && getX()<=600-getSpeed())
+		      setX(getX()+getSpeed());
+		if(direction.equals("DOWN") && getY()<=800-getSpeed())
+		      setY(getY()+getSpeed());
+		if(direction.equals("UP") && getY()>=getSpeed()-50)
+		      setY(getY()-getSpeed());
 	}
 
 	public String toString()
 	{
-		return "";
+		return xPos + " " + yPos + " ";
 	}
 }

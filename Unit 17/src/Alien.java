@@ -14,48 +14,74 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private String imageName;
+	private int imgSize;
 
 	public Alien()
 	{
-		this(0,0,0);
+		this(0,0,0,0);
 	}
 
 	public Alien(int x, int y)
 	{
-		this(x,y,0);
+		this(x,y,0, 0);
 	}
 
-	public Alien(int x, int y, int s)
+	public Alien(int x, int y, int s, int type)
 	{
 		super(x, y);
 		speed=s;
-		try
-		{
-			image = ImageIO.read(new File("alien.jpg"));
+		if(type == 0) {
+			setImage("alien.JPG");
+			imgSize = 80;
 		}
-		catch(Exception e)
-		{
-			//feel free to do something here
+		else if (type == 1) {
+			setImage("Lancer1.png");
+			imgSize = 80;
+		}
+		else if (type == 2) {
+			setImage("Micro.png");
+			imgSize = 40;
+		}
+		else if (type == 3) {
+			setImage("Pulse.png");
+			imgSize = 60;
 		}
 	}
 
 	public void setSpeed(int s)
 	{
-	   //add code
+	   speed = s;
 	}
 
 	public int getSpeed()
 	{
-	   return 0;
+	   return speed;
+	}
+	
+	public String getName() {
+		return imageName;
+	}
+	
+	private void setImage(String file) {
+		imageName = file;
+		try
+		{
+			image = ImageIO.read(new File("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 17\\src\\" + file));
+		}
+		catch(Exception e)
+		{
+			System.out.println("Alien Image not found.");
+		}
 	}
 
 	public void draw( Graphics window )
 	{
-   	window.drawImage(image,getX(),getY(),80,80,null);
+   	window.drawImage(image,getX(),getY(),imgSize,imgSize,null);
 	}
 
 	public String toString()
 	{
-		return "";
+		return super.toString() + getSpeed();
 	}
 }
