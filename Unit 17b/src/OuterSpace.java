@@ -179,7 +179,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		clean:
 		for(Ammo shot : enemyShots) {
-		if(shot.getX() <= 0 || shot.getY() <= 0 || shot.getX() >= 800 || shot.getY() >= 1000) {
+		if(shot.getX() <= 2 || shot.getY() <= 2 || shot.getX() >= 798 || shot.getY() >= 998) {
 			enemyShots.remove(shot);
 			break clean;
 		}
@@ -269,18 +269,25 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		boolean nextStage = false;
 		for(int i = 0; i<stage/50 + 1; i++) {
 			nextStage = true;
-			int wave = rng.nextInt(10)+stage/2;
+			int wave = rng.nextInt(5)+stage/4 ;
+			//testing
+			//int wave = 19;
 			if(wave == 0) {
 				aliens.add(new Alien(380,100,3,20,3));
 			}
 			if(wave == 1) {
 				aliens.add(new Alien(380,100,3,10,3));
 			}
-			if(wave == 1) {
+			if(wave == 2) {
 				aliens.add(new Alien(660,100,3,20,3));
 				aliens.add(new Alien(100,100,-3,20,3));
 			}
-			if(wave == 5||wave == 6) {
+			if(wave == 3 || wave == 7) {
+				aliens.add(new Alien(660,100,3,20,3));
+				aliens.add(new Alien(380,100,3,10,3));
+				aliens.add(new Alien(100,100,-3,20,3));
+			}
+			if(wave == 5||wave == 6 || wave == 8) {
 				aliens.add(new Alien(100,100,5));
 				aliens.add(new Alien(200,100,5));
 				aliens.add(new Alien(320,100,rng.nextInt(9)+1));
@@ -323,15 +330,15 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				}
 			}
 			if (wave == 18) {
-				aliens.add(new Alien(380,150,19,2,50));
-				aliens.add(new Alien(380,150,-13,3,50));
+				aliens.add(new Alien(380,150,19,4,50));
+				aliens.add(new Alien(380,150,-13,4,50));
 			}
 			if (wave == 19) {
-				aliens.add(new Alien(380, 200, 20, 1, 50));
+				aliens.add(new Alien(380, 75, 5, 4, 500));
 			}
 			
 		}
-		if(stage<10 && nextStage) {
+		if(stage<60 && nextStage) {
 			stage++;
 			nextStage = false;
 		}
@@ -351,19 +358,19 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	}
 	
 	public void playerMove() {
-		if(keys[0] == true)
+		if(keys[0] == true && ship.getX() >= 5)
 		{
 			ship.move("LEFT");
 		}
-		if(keys[1] == true)
+		if(keys[1] == true && ship.getX()<=760)
 		{
 			ship.move("RIGHT");
 		}
-		if(keys[2] == true)
+		if(keys[2] == true && ship.getY()>=100)
 		{
 			ship.move("UP");
 		}
-		if(keys[3] == true&& ship.getY()<=900)
+		if(keys[3] == true && ship.getY()<=900)
 		{
 			ship.move("DOWN");
 		}
@@ -391,6 +398,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		for(Alien a : aliens) {
 			score+=100*multiplier;
 			multiplier += .5;
+			drops.add(new Boost(a.getX(), a.getY(),rng.nextInt(100)));
 		}
 		aliens.clear();
 		for(Ammo s : enemyShots) {
