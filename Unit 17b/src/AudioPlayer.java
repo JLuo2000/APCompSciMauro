@@ -37,6 +37,19 @@ public class AudioPlayer {
 	        ex.printStackTrace();
 	    }
 	}
+	public void playMusic()  {
+		try {
+			isPlaying = true;
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audiofile);
+	        clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.loop(100000);
+
+	    } catch(Exception ex) {
+	        System.out.println("Error with playing sound.");
+	        ex.printStackTrace();
+	    }
+	}
 	public void stop() {
 		isPlaying = false;
 		clip.stop();

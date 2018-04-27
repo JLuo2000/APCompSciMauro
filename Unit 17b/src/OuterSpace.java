@@ -83,7 +83,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		aliens.add(alienTwo);
 		this.addKeyListener(this);
 		new Thread(this).start();
-		music.play();
+		music.playMusic();
 		setVisible(true);
 		
 	}
@@ -170,11 +170,20 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	}
 	
 	public void cleanup() {
+		clean:
 		for(Ammo shot : shots) {
 			if(shot.getX() <= 0 || shot.getY() <= 0 || shot.getX() >= 800 || shot.getY() >= 1000) {
-				shot = null;
+				shots.remove(shot);
+				break clean;
 			}
 		}
+		clean:
+		for(Ammo shot : enemyShots) {
+		if(shot.getX() <= 0 || shot.getY() <= 0 || shot.getX() >= 800 || shot.getY() >= 1000) {
+			enemyShots.remove(shot);
+			break clean;
+		}
+	}
 		shots.removeAll(Collections.singleton(null));
 		aliens.removeAll(Collections.singleton(null));
 	}
@@ -317,6 +326,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				aliens.add(new Alien(380,150,19,2,50));
 				aliens.add(new Alien(380,150,-13,3,50));
 			}
+			if (wave == 19) {
+				aliens.add(new Alien(380, 200, 20, 1, 50));
+			}
 			
 		}
 		if(stage<10 && nextStage) {
@@ -351,7 +363,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			ship.move("UP");
 		}
-		if(keys[3] == true)
+		if(keys[3] == true&& ship.getY()<=900)
 		{
 			ship.move("DOWN");
 		}
