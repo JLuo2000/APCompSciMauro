@@ -68,6 +68,24 @@ public class Paddle extends Block
 	   }
 
    }
+   public void moveLeftAndDraw(Graphics window)
+   {
+	   if (getX() >=5) {
+		   window.setColor(Color.white);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+		   setX(getX() - getSpeed());
+		   window.setColor(Color.BLACK);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+	   }
+	   else {
+		   window.setColor(Color.white);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+		   setX(0);
+		   window.setColor(Color.BLACK);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+	   }
+
+   }
 
    public void moveDownAndDraw(Graphics window)
    {
@@ -78,6 +96,20 @@ public class Paddle extends Block
 		   }
 		   else {
 			   setY(getY() + getSpeed());
+		   }
+		   window.setColor(Color.BLACK);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+
+   }
+   public void moveRightAndDraw(Graphics window)
+   {
+		   window.setColor(Color.white);
+		   window.fillRect(getX(), getY(), getWidth(), getHeight());
+		   if (getX()>=750) {
+			   setX(750);
+		   }
+		   else {
+			   setX(getX() + getSpeed());
 		   }
 		   window.setColor(Color.BLACK);
 		   window.fillRect(getX(), getY(), getWidth(), getHeight());

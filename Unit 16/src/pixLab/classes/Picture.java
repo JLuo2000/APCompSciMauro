@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
 import java.awt.image.BufferedImage;
+import java.nio.charset.StandardCharsets;
 import java.text.*;
 import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
@@ -100,6 +101,175 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void encode(Picture messagePict)
+  {
+	  Pixel[][] messagePixels = messagePict.getPixels2D();
+	  Pixel[][] currPixels = this.getPixels2D();
+	  Pixel currPixel = null;
+	  Pixel messagePixel = null;
+	  int count = 0;
+	  for (int row = 0; row < this.getHeight(); row++)
+	  		{
+		  		for (int col = 0; col < this.getWidth(); col++)
+		  			{
+		  				// if the current pixel red is odd make it even
+		  			currPixel = currPixels[row][col];
+		  			if (currPixel.getRed() % 2 == 1)
+		  				currPixel.setRed(currPixel.getRed() - 1);
+		  			messagePixel = messagePixels[row][col];
+		  			if (messagePixel.colorDistance(Color.BLACK) < 50)
+		  			{
+		  				currPixel.setRed(currPixel.getRed() + 1);
+		  				count++;
+		  			}
+	  			}
+	  		}
+	  System.out.println(count);
+  	}
+  /**
+  * Method to decode a message hidden in the
+  * red value of the current picture
+  * @return the picture with the hidden message
+  */
+  public Picture decode()
+  {
+  Pixel[][] pixels = this.getPixels2D();
+  int height = this.getHeight();
+  int width = this.getWidth();
+  Pixel currPixel = null;
+
+  Pixel messagePixel = null;
+  Picture messagePicture = new Picture(height,width);
+  Pixel[][] messagePixels = messagePicture.getPixels2D();
+  int count = 0;
+  for (int row = 0; row < this.getHeight(); row++)
+  {
+  for (int col = 0; col < this.getWidth(); col++)
+  {
+  currPixel = pixels[row][col];
+  messagePixel = messagePixels[row][col];
+  if (currPixel.getRed() % 2 == 1)
+  {
+  messagePixel.setColor(Color.BLACK);
+  count++;
+  }
+  }
+  }
+  System.out.println(count);
+  return messagePicture;
+  }
+  
+  public void encodePic(Picture pic) {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel[][] toEncode = pic.getPixels2D();
+	  for(Pixel[] row : pixels) {
+		  for(Pixel pix : row) {
+			  if(pix.getBlue()%2 == 1) {
+				  pix.setBlue(pix.getBlue()-1);
+			  }
+		  }
+	  }
+	  
+	  boolean black = false;
+	  
+	  for (int row = 0; row < toEncode.length; row++) {
+		  black = toEncode[row][0].getBlue() == 0;
+		  if(black) toEncode[row][0].setBlue(toEncode[row][0].getBlue()+1);
+		  for(int i = 1; i<toEncode[row].length; i++) {
+			  if(black) {
+				  if(toEncode[row][i].getBlue()!=0) {
+					  black = !black;
+					  pixels[row][i].setBlue(pixels[row][i].getBlue()+1);
+					  System.out.println("Encoding White");
+				  }
+			  }
+			  if(!black) {
+				  if(toEncode[row][i].getBlue()==0) {
+					  black = !black;
+					  pixels[row][i].setBlue(pixels[row][i].getBlue()+1);
+					  System.out.println("Encoding Black");
+				  }
+			  }
+		  }
+	  }
+  }
+  
+  public Picture decodePic() {
+	Pixel[][] pixels = this.getPixels2D();
+	int height = this.getHeight();
+	int width = this.getWidth();
+	Pixel currPixel = null;	
+	Pixel messagePixel = null;
+	
+	Picture decoded = new Picture(height, width);
+	Pixel[][] decoPix = decoded.getPixels2D();
+	
+	for(int row = 0; row < height; row++) {
+		boolean black = false;
+		for(int col = 0; col < width; col++) {
+			currPixel = pixels[row][col];
+			if(currPixel.getBlue()%2 == 1) {
+				black = !black;
+			}
+			if(black) {
+				decoPix[row][col].setBlue(0);
+				decoPix[row][col].setGreen(0);
+				decoPix[row][col].setRed(0);
+			}
+		}
+	}
+	return decoded;
+  }
+  
+  public void encodeMess(String message) {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int[] toEncode = new int[message.length()];
+	  
+	  for(int i = 0; i <toEncode.length; i++) {
+		  toEncode[i] = (int) message.charAt(i);
+	  }
+	  
+	  for(Pixel[] row : pixels) {
+		  for(Pixel pix : row) {
+			  if(pix.getGreen()%2 == 1) {
+				  pix.setGreen(pix.getGreen()-1);
+			  }
+		  }
+	  }
+	  pixels[0][message.length()-1].setGreen(pixels[0][message.length()-1].getGreen()+1);
+	  for(int i = 1; i <=toEncode.length; i++) {
+		  for(int j = 0; j < 255; j++) {
+			  if(toEncode[i-1] == j) {
+				  pixels[i][j].setGreen(pixels[i][j].getGreen()+1);
+			  }
+		  }
+	  }
+	  
+  }
+  
+  public void decodeMess() {
+	  Pixel[][] pixels = this.getPixels2D();
+	  String output = "";
+	  int length = 0;
+	  while(length < pixels[0].length) {
+		  length++;
+		  if(pixels[0][length].getGreen()%2 == 1) break;
+	  }
+	  
+	  
+	  for(int i = 1; i <= length+1; i++) {
+		  for(int asc = 0; asc<256; asc++) {
+			  if(pixels[i][asc].getGreen()%2 == 1) {
+				  output += Character.toString((char) asc);
+			  }
+		  }
+	  }
+	  System.out.println(output);
+  }
+  
+  public void encodePic() {
+	  Pixel[][] pixels = this.getPixels2D();
+  }
   public void keepOnlyBlue() {
 	  Pixel[][] pixels = this.getPixels2D();
 	  for (Pixel[] rowArray : pixels)

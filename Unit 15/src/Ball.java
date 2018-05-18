@@ -91,7 +91,7 @@ public class Ball extends Block implements Collidable
 
 @Override
 public boolean didCollideLeft(Object obj) {
-	Paddle lPad = (Paddle) obj;
+	Block lPad = (Block) obj;
 	if((getX() <=  lPad.getX() + lPad.getWidth() + Math.abs(getXSpeed()) && getX()>=lPad.getX())
 	&&(getY() >= lPad.getY()
 		&& getY() <= lPad.getY() + lPad.getHeight() 
@@ -110,7 +110,7 @@ public boolean didCollideLeft(Object obj) {
 
 @Override
 public boolean didCollideRight(Object obj) {
-	Paddle rPad = (Paddle) obj;
+	Block rPad = (Block) obj;
 	if((getX() <=  rPad.getX() + rPad.getWidth() + Math.abs(getXSpeed()) && getX() >=rPad.getX())
 	&&(getY() >= rPad.getY()
 		&& getY() <= rPad.getY() + rPad.getHeight() 

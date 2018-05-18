@@ -134,7 +134,36 @@ public class PictureTester
 	  redMoto.explore();
 
   }
+  public static void testEncode() {
+	  Picture redMoto = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\redMotorcycle.jpg");
+	  redMoto.explore();
+	  redMoto.encode(new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\crybytes-apple_icon.jpg"));
+	  redMoto.explore();
+	  redMoto = redMoto.decode();
+	  redMoto.explore();
+  }
   
+  public static void testMessage() {
+	  Picture redMoto = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\redMotorcycle.jpg");
+	  redMoto.explore();
+	  redMoto.encodeMess("Did you ever hear the tragedy of Darth Plagueis 'The Wise'?");
+	  redMoto.explore();
+	  redMoto.decodeMess();
+  }
+  
+  public static void testPicEncode() {
+	  Picture redMoto = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\redMotorcycle.jpg");
+	  redMoto.explore();
+	  redMoto.encodePic(new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\msg.jpg"));
+	  redMoto.explore();
+	  redMoto = redMoto.decodePic();
+	  redMoto.explore();
+	  redMoto = new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\redMotorcycle.jpg");
+	  redMoto.encodePic(new Picture("C:\\Users\\jimlu\\Documents\\GitHub\\APCompSciMauro\\Unit 16\\src\\pixLab\\images\\crybytes-apple_icon.jpg"));
+	  redMoto.explore();
+	  redMoto = redMoto.decodePic();
+	  redMoto.explore();  
+  }
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -168,6 +197,7 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	  testSharpen();
+	//testSharpen();
+	  testPicEncode();
   }
 }
