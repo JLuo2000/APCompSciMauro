@@ -127,6 +127,19 @@ public boolean didCollideRight(Object obj) {
 	return false;
 }
 
+
+
+public boolean didCollide(Object obj) {
+	Block block = (Block) obj;
+	int X2 = getX()+getWidth();
+	int Y2 = getY()+getHeight();
+	int blockX2 = block.getX()+block.getWidth();
+	int blockY2 = block.getY()+block.getHeight();
+	if (getX() < blockX2 && X2 > block.getX() &&
+		    getY() < blockY2 && Y2 > block.getY()) return true;
+	return false;
+}
+
 @Override
 public boolean didCollideTop(Object obj) {
 	// TODO Auto-generated method stub

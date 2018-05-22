@@ -14,7 +14,7 @@ public class BreakoutRunner extends JFrame
 
 	public BreakoutRunner()
 	{
-		super("Breakout");
+		super("Breakthrough");
 		setSize(WIDTH,HEIGHT);
 		
 		Breakout game = new Breakout();
